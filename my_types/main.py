@@ -1,7 +1,8 @@
 from typing import Any, Final, TypedDict
-from pydantic import BaseModel
 
+import numpy as np
+import numpy.typing as npt
 
-class HelloWorldModel(BaseModel):
-    Hello: str
+HelloWorldType: Final[Any] = TypedDict("HelloWorldType", {"Hello": str})
 
+IntegerArrayType: Final[Any] = npt.NDArray[np.int_]
