@@ -1,2 +1,2 @@
-web:  uvicorn main:main
+worker:  uvicorn main:main
 
