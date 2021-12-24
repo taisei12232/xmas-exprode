@@ -18,11 +18,14 @@ def root() -> HelloWorldType:
 
 @app.post("/test")
 async def image(image_file: UploadFile = File(...)):
-    contents: bytes = await image_file.read()
-    array: IntegerArrayType = np.fromstring(contents, np.uint8)
-    img: IntegerArrayType = cv2.imdecode(array, cv2.IMREAD_GRAYSCALE)
-    image2 = cv2.bitwise_not(img)
-    cv2.imwrite("image2.png", image2)
+    try:
+        contents: bytes = await image_file.read()
+        array: IntegerArrayType = np.fromstring(contents, np.uint8)
+        img: IntegerArrayType = cv2.imdecode(array, cv2.IMREAD_GRAYSCALE)
+        image2 = cv2.bitwise_not(img)
+        cv2.imwrite("image2.png", image2)
+    except Exception as e:
+        print(e)
     return FileResponse("image2.png")
 
 
